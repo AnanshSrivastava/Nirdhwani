@@ -1,0 +1,9 @@
+tensorflow>=2.10
+numpy
+scipy
+soundfile
+sounddevice
+librosa
+pesq
+pystoi
+yt-dlp
