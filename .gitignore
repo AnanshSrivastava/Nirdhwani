@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+env/
+
+# Datasets & models (too large for git — use Drive/LFS instead)
+data/raw/
+data/processed/
+*.wav
+*.mp3
+*.h5
+*.tflite
+*.pt
+*.ckpt
+
+# OS/editor junk
+.DS_Store
+.vscode/
+*.log
