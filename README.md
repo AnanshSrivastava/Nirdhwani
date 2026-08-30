@@ -143,5 +143,5 @@ MIT — see [`LICENSE`](./LICENSE)
 ---
 
 <div align="center">
-<sub>Built for Smart India Hackathon 2026 · Team [Your Team Name]</sub>
+<sub>Built for Smart India Hackathon 2026 · NULLNOISE</sub>
 </div>
