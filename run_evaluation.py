@@ -107,20 +107,17 @@ def process_folder(model, folder_name, new_folder_name):
 
 
 if __name__ == '__main__':
-    # arguement parser for running directly from the command line
+    # argument parser for running directly from the command line
     parser = argparse.ArgumentParser(description='data evaluation')
-    parser.add_argument('--in_folder', '-i',
+    parser.add_argument('--in_folder', '-i', required=True,
                         help='folder with input files')
-    parser.add_argument('--out_folder', '-o',
+    parser.add_argument('--out_folder', '-o', required=True,
                         help='target folder for processed files')
-    parser.add_argument('--model', '-m',
+    parser.add_argument('--model', '-m', required=True,
                         help='weights of the enhancement model in .h5 format')
     args = parser.parse_args()
     # determine type of model
-    if args.model.find('_norm_') != -1:
-        norm_stft = True
-    else:
-        norm_stft = False
+    norm_stft = '_norm_' in args.model
     # create class instance
     modelClass = DTLN_model();
     # build the model in default configuration
