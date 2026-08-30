@@ -12,13 +12,14 @@ Version: 13.05.2020
 This code is licensed under the terms of the MIT-license.
 """
 
-import time
-import tensorflow as tf 
-import numpy as np
 import os
 
-# only use the cpu
-os.environ["CUDA_VISIBLE_DEVICES"]=''
+# only use the cpu (must be set before importing TensorFlow)
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
+
+import time
+import numpy as np
+import tensorflow as tf
 
 if __name__ == '__main__':
     # loading model in saved model format
