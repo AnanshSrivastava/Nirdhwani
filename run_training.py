@@ -43,6 +43,11 @@ path_to_val_mix = './data/val_pairs/noisy/'
 # path to folder containing the clean audio validation data
 path_to_val_speech = './data/val_pairs/clean/'
 
+# fallback: if no explicit val set exists, reuse training data
+if not os.path.isdir(path_to_val_mix) or not os.path.isdir(path_to_val_speech):
+    path_to_val_mix = path_to_train_mix
+    path_to_val_speech = path_to_train_speech
+
 runName = 'dtln_defense_finetune'
 modelTrainer = DTLN_model()
 # override defaults for quick fine-tuning (adjust for your hardware)

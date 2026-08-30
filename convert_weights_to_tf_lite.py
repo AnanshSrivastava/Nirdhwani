@@ -1,8 +1,8 @@
 """
-Script to covert a .h5 weights file of the DTLN model to tf lite.
+Script to convert a .h5 weights file of the DTLN model to tf lite.
 
 Example call:
-    $python convert_weights_to_tf_light.py -m /name/of/the/model.h5 \
+    $python convert_weights_to_tf_lite.py -m /name/of/the/model.h5 \
                                               -t name_target 
                               
 

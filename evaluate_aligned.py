@@ -72,7 +72,9 @@ def main():
             pesqs.append(pesq(SR, clean_a, enhanced_a, 'wb'))
         except Exception:
             pass
-
+    if len(snrs) == 0:
+            print("No matching file pairs found — check your folder paths.")
+            return
     print(f"Evaluated {len(snrs)} files")
     print(f"Detected delay: mean {np.mean(delays):.1f} samples ({np.mean(delays)/SR*1000:.1f} ms)\n")
     print(f"SNR:  {np.mean(snrs):.2f} dB  (target: > 15 dB)  {'PASS' if np.mean(snrs) > 15 else 'BELOW TARGET'}")

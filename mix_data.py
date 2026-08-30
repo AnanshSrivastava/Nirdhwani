@@ -66,6 +66,7 @@ def main():
     os.makedirs(noisy_dir, exist_ok=True)
     os.makedirs(target_dir, exist_ok=True)
 
+    count = 0
     for i in range(args.n_samples):
         clean_path = random.choice(clean_files)
         noise_path = random.choice(noise_files)
@@ -86,11 +87,12 @@ def main():
         fname = f"sample_{i:05d}.wav"
         sf.write(os.path.join(noisy_dir, fname), mixed, SR)
         sf.write(os.path.join(target_dir, fname), clean_trimmed, SR)
+        count+=1
 
         if (i + 1) % 200 == 0:
             print(f"  {i+1}/{args.n_samples} pairs created")
 
-    print(f"\nDone. {args.n_samples} noisy/clean pairs in {args.out_dir}")
+    print(f"\nDone. {count} noisy/clean pairs in {args.out_dir}")
 
 
 if __name__ == "__main__":

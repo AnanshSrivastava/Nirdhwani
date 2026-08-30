@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 venv/
 __pycache__/
 *.pyc
@@ -35,4 +34,3 @@ data/processed/
 .DS_Store
 .vscode/
 *.log
->>>>>>> 799d657a759c541e127be7b91f72ceb0eabc0a74

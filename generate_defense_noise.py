@@ -15,7 +15,7 @@ SR = 16000  # DTLN is fixed at 16kHz, do not change
 
 def gunshot_burst(duration=1.0, sr=SR):
     n = int(duration * sr)
-    t = np.linspace(0, duration, n)
+    t = np.linspace(0, duration, n, endpoint=False)
     impulse_time = np.random.uniform(0.1, 0.3)
     impulse_idx = int(impulse_time * sr)
     decay = np.exp(-40 * (t - impulse_time))
@@ -28,7 +28,7 @@ def gunshot_burst(duration=1.0, sr=SR):
 
 def rotor_hum(duration=1.0, sr=SR, base_freq=None):
     n = int(duration * sr)
-    t = np.linspace(0, duration, n)
+    t = np.linspace(0, duration, n, endpoint=False)
     f0 = base_freq or np.random.uniform(8, 20)
     signal = np.zeros(n)
     for harmonic in range(1, 6):
@@ -41,7 +41,7 @@ def rotor_hum(duration=1.0, sr=SR, base_freq=None):
 
 def artillery_boom(duration=1.5, sr=SR):
     n = int(duration * sr)
-    t = np.linspace(0, duration, n)
+    t = np.linspace(0, duration, n, endpoint=False)
     boom_time = np.random.uniform(0.1, 0.2)
     decay = np.exp(-8 * (t - boom_time))
     decay[t < boom_time] = 0
@@ -53,7 +53,7 @@ def artillery_boom(duration=1.5, sr=SR):
 
 def vehicle_engine(duration=1.0, sr=SR):
     n = int(duration * sr)
-    t = np.linspace(0, duration, n)
+    t = np.linspace(0, duration, n, endpoint=False)
     f0 = np.random.uniform(15, 40)
     signal = np.zeros(n)
     for harmonic in range(1, 8):
