@@ -25,8 +25,8 @@ This code is licensed under the terms of the MIT-license.
 from DTLN_model import DTLN_model
 import os
 
-# use the GPU with idx 0
-os.environ["CUDA_VISIBLE_DEVICES"]='0'
+# GPU selection: set CUDA_VISIBLE_DEVICES externally if you want to force a specific GPU.
+# os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 # activate this for some reproducibility
 os.environ['TF_DETERMINISTIC_OPS'] = '1'
 
