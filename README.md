@@ -7,11 +7,7 @@
 *Real-time, edge-deployable speech enhancement for stationary, non-stationary, and impulsive battlefield noise*
 
 ![Status](https://img.shields.io/badge/status-in%20development-yellow)
-<<<<<<< HEAD
 ![Platform](https://img.shields.io/badge/platform-Raspberry%20Pi%204%20(8GB)-c51a4a)
-=======
-![Platform](https://img.shields.io/badge/platform-Raspberry%20Pi%204-c51a4a)
->>>>>>> 799d657a759c541e127be7b91f72ceb0eabc0a74
 ![Model](https://img.shields.io/badge/model-DTLN-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
@@ -21,15 +17,9 @@
 
 ## 📋 Problem Statement
 
-<<<<<<< HEAD
 Defense communication systems face severe intelligibility loss from **gunfire, artillery, rotor noise, and vehicle engines** — noise that is loud, sudden, and unpredictable. Classical adaptive filters (LMS/NLMS) are built for steady background hum and struggle badly with these fast, impulsive events.
 
 This project fine-tunes a pretrained deep learning model to suppress both realistic ambient noise and synthesized impulsive defense noise, deployed live on cheap edge hardware — no cloud, no internet dependency.
-=======
-Defense communication systems face severe intelligibility loss from **gunfire, artillery, rotor noise, and sirens** — noise that is loud, sudden, and unpredictable. Classical adaptive filters (LMS/NLMS) are built for steady background hum and struggle badly with these fast, impulsive events.
-
-This project builds a **hybrid AI-driven ANC pipeline**: a deep learning model trained to suppress stationary, non-stationary, *and* impulsive noise simultaneously, deployed live on edge hardware — no cloud, no internet dependency, sub-second reaction to a gunshot mid-sentence.
->>>>>>> 799d657a759c541e127be7b91f72ceb0eabc0a74
 
 ## 🏗️ Architecture
 
@@ -37,37 +27,21 @@ This project builds a **hybrid AI-driven ANC pipeline**: a deep learning model t
 flowchart LR
     A[🎤 Mic Input] --> B[DTLN Model<br/>Real-time Inference]
     B --> C[🔊 Cleaned Speech Output]
-<<<<<<< HEAD
 
     subgraph Pi["Raspberry Pi 4 — 8GB"]
         B
-=======
-    D[Classical Baseline<br/>FDAF / Wiener Filter] -.compared against.-> B
-
-    subgraph Pi["Raspberry Pi 4 — 8GB"]
-        B
-        D
->>>>>>> 799d657a759c541e127be7b91f72ceb0eabc0a74
     end
 
     style Pi fill:#1a1a2e,stroke:#e94560,color:#fff
     style B fill:#0f3460,stroke:#e94560,color:#fff
-<<<<<<< HEAD
 ```
 
 **Pipeline flow:** LibriSpeech clean speech + synthesized defense noise (gunshot/rotor/artillery/vehicle) + real recorded ambient noise → mix at randomized SNR → fine-tune pretrained DTLN (CPU, laptop) → export to two-stage TFLite → validate on held-out test set → deploy for live inference on Pi 4.
-=======
-    style D fill:#16213e,stroke:#888,color:#fff
-```
-
-**Pipeline flow:** synthetic noisy/clean pairs (real recorded noise + real recorded speech) → fine-tune pretrained DTLN → export to TFLite → deploy for live inference on Pi → benchmark against a classical DSP baseline.
->>>>>>> 799d657a759c541e127be7b91f72ceb0eabc0a74
 
 ## ✨ Key Features
 
 | | |
 |---|---|
-<<<<<<< HEAD
 | 🎯 **Impulsive-noise aware** | Fine-tuned specifically on synthesized gunshot/artillery/rotor/vehicle noise — the exact gap in classical LMS-based ANC |
 | ⚡ **Real-time, causal, low-latency** | Streams frame-by-frame, ~24ms inherent algorithmic delay (well under real-time speech thresholds) |
 | 🔌 **Fully edge-deployed, low-cost** | Runs entirely on-device on a Raspberry Pi 4 (8GB) — no Jetson, no cloud dependency |
@@ -81,29 +55,12 @@ flowchart LR
 - **Deployment**: Two-stage TFLite export, Raspberry Pi 4 (8GB), using [PiDTLN](https://github.com/SaneBow/PiDTLN) real-time runtime
 - **Datasets**: LibriSpeech `dev-clean` (real recorded speech) + synthesized defense noise (gunshot/rotor/artillery/vehicle engine, physically-modeled) + real recorded ambient noise
 - **Evaluation**: SNR, STOI, PESQ (wideband), cross-correlation-aligned to correct for block-processing latency
-=======
-| 🎯 **Impulsive-noise aware** | Handles gunshots/artillery, not just steady hum — the exact gap in classical LMS-based ANC |
-| ⚡ **Real-time, causal** | Streams frame-by-frame live, no "look-ahead" — works for live conversation, not just recordings |
-| 🔌 **Fully edge-deployed** | Runs entirely on-device (Raspberry Pi 4), no cloud dependency — critical for field use |
-| 📊 **Honestly benchmarked** | Real measured SNR / PESQ / STOI, reported against published research ranges, not inflated claims |
-| 🧪 **Dual validation** | AI model *and* a classical filter baseline, so improvement is provable, not asserted |
-
-## 🛠️ Tech Stack
-
-- **Model**: [DTLN](https://github.com/breizhn/DTLN) (Dual-signal Transformation LSTM Network), fine-tuned
-- **Training**: Python, TensorFlow 2.x, Google Colab (GPU)
-- **Deployment**: TFLite, Raspberry Pi 4 (8GB)
-- **Datasets**: SESA, C3GD, GISE-51, VGGSound (real recorded noise) + LibriSpeech (real recorded speech) + custom-extracted clips
-- **Evaluation**: SNR, PESQ, STOI
-- **Classical baseline**: FDAF / Wiener filter (DSP, no ML)
->>>>>>> 799d657a759c541e127be7b91f72ceb0eabc0a74
 
 ## 📁 Repository Structure
 
 ```
 sih26052-anc-defense/
 ├── data/
-<<<<<<< HEAD
 │   ├── LibriSpeech/dev-clean/        # clean speech source
 │   └── defense_noise/                # synthesized gunshot/rotor/artillery/vehicle clips
 ├── generate_defense_noise.py         # synthesizes physically-modeled defense noise
@@ -117,43 +74,19 @@ sih26052-anc-defense/
 ├── pretrained_model/                 # original DTLN pretrained weights (.h5, .tflite)
 ├── models_dtln_defense_finetune/     # our fine-tuned weights (.weights.h5)
 ├── finetuned_tflite_models/          # our fine-tuned model_1.tflite + model_2.tflite (Pi-ready)
-=======
-│   ├── download_datasets.py     # pulls SESA / C3GD / GISE-51 / VGGSound / LibriSpeech
-│   ├── extract_from_video.py    # yt-dlp + Audacity-assisted event extraction
-│   └── mix_pairs.py             # generates noisy/clean training pairs at randomized SNR
-├── training/
-│   ├── finetune_dtln.py         # fine-tunes pretrained DTLN on our mixed dataset
-│   └── eval_metrics.py          # computes SNR / PESQ / STOI on held-out test set
-├── inference/
-│   ├── realtime_pi.py           # live mic-in → model → speaker-out on the Pi
-│   └── classical_baseline.py    # FDAF / Wiener filter comparison, same Pi
-├── docs/
-│   ├── architecture.png
-│   ├── results.md               # measured numbers, reported honestly
-│   └── references.md            # cited research papers
-├── requirements.txt
-├── .gitignore
->>>>>>> 799d657a759c541e127be7b91f72ceb0eabc0a74
 └── README.md
 ```
 
 ## 🚀 Setup
 
 ```bash
-<<<<<<< HEAD
 # Clone the base DTLN repo
 git clone https://github.com/breizhn/DTLN.git
 cd DTLN
-=======
-# Clone the repo
-git clone https://github.com/<your-username>/sih26052-anc-defense.git
-cd sih26052-anc-defense
->>>>>>> 799d657a759c541e127be7b91f72ceb0eabc0a74
 
 # Set up environment
 python3 -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
-<<<<<<< HEAD
 pip install tensorflow soundfile numpy scipy librosa wavinfo pystoi pesq sounddevice
 
 # Get clean speech data
@@ -174,26 +107,10 @@ python convert_weights_to_tf_lite.py -m ./models_dtln_defense_finetune/dtln_defe
 git clone https://github.com/SaneBow/PiDTLN.git
 # copy finetuned_tflite_models/*.tflite into PiDTLN/models/, then:
 python3 ns.py -i <mic_device> -o <output_device>
-=======
-pip install -r requirements.txt
-
-# Download datasets
-python data/download_datasets.py
-
-# Generate training pairs
-python data/mix_pairs.py
-
-# Fine-tune (run on Colab GPU, not locally)
-python training/finetune_dtln.py
-
-# Deploy on Raspberry Pi
-python inference/realtime_pi.py
->>>>>>> 799d657a759c541e127be7b91f72ceb0eabc0a74
 ```
 
 ## 📊 Results
 
-<<<<<<< HEAD
 Measured on 30 held-out test samples (defense noise, 5dB input SNR), cross-correlation-aligned to correct for ~24ms block-processing delay:
 
 | Metric | Unprocessed (noisy) | Pretrained DTLN | Fine-tuned DTLN (.h5) | Fine-tuned DTLN (.tflite, Pi-ready) | Target (PS) |
@@ -208,47 +125,23 @@ All three PS targets are met by the fine-tuned model, both before and after TFLi
 - Defense noise (gunshot/rotor/artillery/vehicle) is synthetically generated, not field-recorded — a deliberate, time-constrained engineering choice
 - Tested at a single input SNR (5dB) so far; testing across a range (0–15dB) is planned before demo day
 - No classical DSP baseline (FDAF/Wiener) has been implemented yet for comparison
-=======
-> Populated as we go — real measured numbers only, no placeholders left in for demo day.
-
-| Metric | Baseline (unprocessed) | Classical (FDAF) | DTLN (fine-tuned) | Target (PS) |
-|---|---|---|---|---|
-| SNR (dB) | — | — | — | > 15 dB |
-| PESQ | — | — | — | > 2.5 |
-| STOI | — | — | — | > 0.85 |
-| Latency (ms) | — | — | — | real-time |
->>>>>>> 799d657a759c541e127be7b91f72ceb0eabc0a74
 
 ## 👥 Team & Roles
 
 | Role | Owner | Focus |
 |---|---|---|
-<<<<<<< HEAD
 | ML/training lead | | Fine-tuning pipeline, TFLite export |
 | Data/noise synthesis lead | | Defense noise generation, dataset mixing |
 | Evaluation lead | | SNR/STOI/PESQ benchmarking |
 | Pi integration lead | | Real-time deployment on Raspberry Pi 4 |
-=======
-| Dataset lead | | Dataset sourcing & curation |
-| Video-extraction lead | | Custom defense-noise clip extraction |
-| ML/training lead | | Mixing pipeline, fine-tuning, evaluation |
-| Pi integration lead | | Real-time deployment, latency tuning |
-| Classical baseline lead | | FDAF/Wiener filter implementation |
->>>>>>> 799d657a759c541e127be7b91f72ceb0eabc0a74
 | Presentation/docs lead | | Architecture docs, demo video, slides |
 
 ## 📚 References
 
-<<<<<<< HEAD
 - Westhausen & Meyer — *DTLN: Dual-Signal Transformation LSTM Network for Real-Time Noise Suppression*, Interspeech 2020
 - [breizhn/DTLN](https://github.com/breizhn/DTLN) — pretrained model and training code
 - [SaneBow/PiDTLN](https://github.com/SaneBow/PiDTLN) — Raspberry Pi real-time deployment reference
 - LibriSpeech dev-clean dataset (OpenSLR)
-=======
-- DRDO Defence Science Journal — *AI Driven Advances in Noise Cancellation* (2026)
-- Westhausen & Meyer — *DTLN: Dual-Signal Transformation LSTM Network for Real-Time Noise Suppression*, Interspeech 2020
-- SESA, C3GD, GISE-51 dataset papers (see `docs/references.md` for full citations)
->>>>>>> 799d657a759c541e127be7b91f72ceb0eabc0a74
 
 ## 📄 License
 
