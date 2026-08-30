@@ -79,7 +79,10 @@ def main():
     print(f"Detected delay: mean {np.mean(delays):.1f} samples ({np.mean(delays)/SR*1000:.1f} ms)\n")
     print(f"SNR:  {np.mean(snrs):.2f} dB  (target: > 15 dB)  {'PASS' if np.mean(snrs) > 15 else 'BELOW TARGET'}")
     print(f"STOI: {np.mean(stois):.3f}      (target: > 0.85) {'PASS' if np.mean(stois) > 0.85 else 'BELOW TARGET'}")
-    print(f"PESQ: {np.mean(pesqs):.2f}      (target: > 2.5)  {'PASS' if np.mean(pesqs) > 2.5 else 'BELOW TARGET'}")
+    if len(pesqs) == 0:
+        print("PESQ: N/A (PESQ computation failed for all files)")
+    else:
+        print(f"PESQ: {np.mean(pesqs):.2f}      (target: > 2.5)  {'PASS' if np.mean(pesqs) > 2.5 else 'BELOW TARGET'}")
 
 
 if __name__ == "__main__":
