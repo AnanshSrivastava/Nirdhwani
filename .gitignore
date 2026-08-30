@@ -1,0 +1,15 @@
+venv/
+__pycache__/
+*.pyc
+data/
+output_folder/
+output_folder_finetuned/
+input_folder/
+finetuned_tflite_1.tflite
+finetuned_tflite_2.tflite
+*.log
+output_log.txt
+clean.wav
+real_noise.wav
+test_noisy.wav
+test_enhanced.wav
