@@ -22,13 +22,15 @@ Version: 13.05.2020
 This code is licensed under the terms of the MIT-license.
 """
 
-from DTLN_model import DTLN_model
 import os
+
+# activate this for some reproducibility (must be set before TensorFlow is imported)
+os.environ['TF_DETERMINISTIC_OPS'] = '1'
 
 # GPU selection: set CUDA_VISIBLE_DEVICES externally if you want to force a specific GPU.
 # os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-# activate this for some reproducibility
-os.environ['TF_DETERMINISTIC_OPS'] = '1'
+
+from DTLN_model import DTLN_model
 
 
 
