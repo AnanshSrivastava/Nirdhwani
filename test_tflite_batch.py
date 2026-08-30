@@ -58,10 +58,13 @@ def process_file(audio):
     states_1 = np.zeros(states_in_1_detail['shape']).astype('float32')
     states_2 = np.zeros(states_in_2_detail['shape']).astype('float32')
 
-    out_file = np.zeros((len(audio)))
-    in_buffer = np.zeros((block_len)).astype('float32')
-    out_buffer = np.zeros((block_len)).astype('float32')
-    num_blocks = (audio.shape[0] - (block_len - block_shift)) // block_shift
+    out_file = np.zeros((len(audio),), dtype=np.float32)
+    in_buffer = np.zeros((block_len,), dtype=np.float32)
+    out_buffer = np.zeros((block_len,), dtype=np.float32)
+    num_blocks = max(0, (audio.shape[0] - (block_len - block_shift)) // block_shift)
+
+    if num_blocks == 0:
+        return out_file
 
     for idx in range(num_blocks):
         in_buffer[:-block_shift] = in_buffer[block_shift:]
