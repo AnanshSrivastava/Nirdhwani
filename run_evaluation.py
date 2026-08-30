@@ -29,8 +29,8 @@ from DTLN_model import DTLN_model
 
 def process_file(model, audio_file_name, out_file_name):
     '''
-    Funtion to read an audio file, rocess it by the network and write the 
-    enhanced audio to .wav file.
+    Function to read an audio file, process it by the network and write the
+    enhanced audio to a .wav file.
 
     Parameters
     ----------
