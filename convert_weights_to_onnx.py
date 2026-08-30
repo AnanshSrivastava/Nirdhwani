@@ -25,9 +25,9 @@ import keras2onnx
 if __name__ == '__main__':
     # arguement parser for running directly from the command line
     parser = argparse.ArgumentParser(description='data evaluation')
-    parser.add_argument('--weights_file', '-m',
+    parser.add_argument('--weights_file', '-m', required=True,
                         help='path to .h5 weights file')
-    parser.add_argument('--target_folder', '-t',
+    parser.add_argument('--target_folder', '-t', required=True,
                         help='target folder for saved model')
     
     args = parser.parse_args()
