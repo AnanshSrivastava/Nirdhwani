@@ -265,7 +265,7 @@ class DTLN_model():
         '''
         Method to create a separation kernel. 
         !! Important !!: Do not use this layer with a Lambda layer. If used with
-        a Lambda layer the gradients are updated correctly.
+        a Lambda layer the gradients are not updated correctly.
 
         Inputs:
             num_layer       Number of LSTM layers
