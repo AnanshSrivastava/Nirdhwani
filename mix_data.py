@@ -55,8 +55,10 @@ def main():
     clean_files += glob.glob(os.path.join(args.clean_dir, "**", "*.wav"), recursive=True)
     noise_files = glob.glob(os.path.join(args.noise_dir, "**", "*.wav"), recursive=True)
 
-    assert clean_files, f"No clean speech files found in {args.clean_dir}"
-    assert noise_files, f"No noise files found in {args.noise_dir}"
+    if not clean_files:
+        raise FileNotFoundError(f"No clean speech files found in {args.clean_dir}")
+    if not noise_files:
+        raise FileNotFoundError(f"No noise files found in {args.noise_dir}")
     print(f"Found {len(clean_files)} clean files, {len(noise_files)} noise files")
 
     noisy_dir = os.path.join(args.out_dir, "noisy")

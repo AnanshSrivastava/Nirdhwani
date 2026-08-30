@@ -29,10 +29,11 @@ if __name__ == '__main__':
                         default='False')
     
     args = parser.parse_args()
-    # version check removed - confirmed running TF 2.21, well above the 2.3 minimum
+    # Version check removed; ensure TensorFlow >= 2.3 for TFLite conversion
     
     
+    use_quant = str(args.quantization).strip().lower() in {"1", "true", "yes", "y"}
     converter = DTLN_model()
     converter.create_tf_lite_model(args.weights_file, 
-                                   args.target_folder, 
-                                   use_dynamic_range_quant=bool(args.quantization))
+                               args.target_folder,
+                               use_dynamic_range_quant=use_quant)

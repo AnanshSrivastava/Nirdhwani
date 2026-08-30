@@ -45,7 +45,7 @@ path_to_val_speech = './data/val_pairs/clean/'
 
 runName = 'dtln_defense_finetune'
 modelTrainer = DTLN_model()
-# override defaults for CPU fine-tuning (not training from scratch on GPU)
+# override defaults for quick fine-tuning (adjust for your hardware)
 modelTrainer.max_epochs = 8
 modelTrainer.batchsize = 8
 modelTrainer.lr = 5e-4

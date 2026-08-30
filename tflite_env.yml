@@ -69,5 +69,5 @@ dependencies:
   - pip:
     - flatbuffers==1.12
     - tflite-runtime==2.1.0.post1
-prefix: /Applications/anaconda3/envs/tflite-env
+# prefix: /Applications/anaconda3/envs/tflite-env
 

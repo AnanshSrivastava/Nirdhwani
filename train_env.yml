@@ -116,5 +116,5 @@ dependencies:
   - pip:
     - lxml==4.5.1
     - wavinfo==1.5
-prefix: /home/nils/anaconda3/envs/tfenv
+# prefix: /home/nils/anaconda3/envs/tfenv
 

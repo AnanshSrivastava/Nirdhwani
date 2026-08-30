@@ -113,5 +113,5 @@ dependencies:
   - pip:
     - lxml==4.5.1
     - wavinfo==1.5
-prefix: /home/nils/anaconda3/envs/eval_env
+# prefix: /home/nils/anaconda3/envs/eval_env
 
