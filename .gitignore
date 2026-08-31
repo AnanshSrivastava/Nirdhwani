@@ -18,3 +18,5 @@ data/processed/
 .DS_Store
 .vscode/
 *.log
+*.tar.gz
+data/pairs/
