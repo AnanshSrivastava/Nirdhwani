@@ -19,4 +19,5 @@ data/processed/
 .vscode/
 *.log
 *.tar.gz
-data/pairs/
+data/pairs.tar.gz
+DATASET sih/
